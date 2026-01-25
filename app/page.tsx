@@ -1,65 +1,151 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const experiences = [
+    { company: "Bequall", role: "Strategic Account Manager", period: "Mar 2025 – Aug 2025", description: "Co-developed go-to-market strategy. Secured partners generating hundreds of qualified leads." },
+    { company: "Zeplin", role: "Account Manager", period: "Jul 2024 – Nov 2024", description: "Closed 3 enterprise deals ($30K+ ARR) in ramp period. Fastest rep to close enterprise deal." },
+    { company: "QuickNode", role: "Strategic Customer Success Manager", period: "Aug 2022 – Nov 2023", description: "Founding CS team member. Renewed and expanded $1M+ ARR. Q4 2022 Company Value Award." },
+    { company: "BlockFi", role: "Senior Manager, Client Escalations", period: "Mar 2021 – Aug 2022", description: "Reduced resolution time 50%. Led executive escalations via Zendesk. Built escalation team." },
+    { company: "Atlassian", role: "Account Manager", period: "Aug 2017 – Mar 2021", description: "Closed $10M+ in renewals. Led OpsGenie integration post-acquisition. 3x 'Top Dog' award winner." },
+    { company: "Fiksu", role: "Account Executive", period: "Mar 2015 – Aug 2017", description: "Generated $300K+ in new business. Led and mentored SDR team." }
+  ];
+
+  const projects = [
+    { name: "DoIGrade.com", description: "Sports card tools—grade calculators, trade evaluators, and ELO-based rankings.", link: "https://doigrade.com" },
+    { name: "ADU Pulse", description: "Real-time ADU permit tracking dashboard for Massachusetts.", link: "https://adupulse.com" },
+    { name: "Community Hoops", description: "Co-founded free youth basketball mentoring. Partnered with PeacePlayers International.", link: "https://www.youtube.com/watch?v=27QHI6qX2M0" }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen" style={{ backgroundColor: '#F7F5F2', color: '#1a1a1a', fontFamily: "'Source Serif 4', Georgia, serif" }}>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600&display=swap');
+        ::selection { background: #2B4A3F; color: #F7F5F2; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #F7F5F2; }
+        .nav-link { color: #6B6560; text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; transition: color 0.2s ease; }
+        .nav-link:hover { color: #2B4A3F; }
+        .section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
+        .section-label { font-family: 'DM Sans', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #2B4A3F; margin-bottom: 24px; font-weight: 600; }
+        .experience-item { padding: 18px 0; border-bottom: 1px solid #E8E4DF; }
+        .experience-item:first-child { padding-top: 0; }
+        .experience-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .project-item { padding: 18px 0; border-bottom: 1px solid #E8E4DF; }
+        .project-item:first-child { padding-top: 0; }
+        .project-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .link { color: #2B4A3F; text-decoration: none; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: opacity 0.2s ease; }
+        .link:hover { opacity: 0.7; }
+        .button { display: inline-block; padding: 12px 28px; background: #2B4A3F; color: #F7F5F2; text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border-radius: 2px; transition: all 0.2s ease; }
+        .button:hover { background: #1F362D; }
+        .button-outline { background: transparent; color: #2B4A3F; border: 1.5px solid #2B4A3F; }
+        .button-outline:hover { background: #2B4A3F; color: #F7F5F2; }
+        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s ease forwards; }
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 640px) {
+          .section { padding: 40px 20px; }
+          .nav-inner { padding: 14px 20px !important; }
+          .nav-links { gap: 16px !important; font-size: 13px; }
+          .hero-title { font-size: 36px !important; }
+          .button-group { flex-direction: column !important; width: 100%; }
+          .exp-header { flex-direction: column !important; gap: 4px !important; }
+          .footer-inner { flex-direction: column !important; text-align: center; }
+        }
+      `}</style>
+
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backgroundColor: 'rgba(247, 245, 242, 0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E4DF' }}>
+        <div className="nav-inner" style={{ maxWidth: '720px', margin: '0 auto', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <a href="#" style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontWeight: 600, fontSize: '16px', color: '#1a1a1a', textDecoration: 'none' }}>ntwelch.com</a>
+          <div className="nav-links" style={{ display: 'flex', gap: '28px' }}>
+            <a href="#about" className="nav-link">About</a>
+            <a href="#experience" className="nav-link">Experience</a>
+            <a href="#projects" className="nav-link">Projects</a>
+            <a href="#contact" className="nav-link">Contact</a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      <section className="section" style={{ paddingTop: '100px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '24px' }}>
+          <img src="/headshot.jpg" alt="Nick Welch" className="fade-in" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '3px solid #E8E4DF' }} />
+          <div>
+            <h1 className="fade-in fade-in-delay-1 hero-title" style={{ fontSize: '42px', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#1a1a1a' }}>Nick Welch</h1>
+            <p className="fade-in fade-in-delay-1" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: '#8B857E', marginTop: '6px' }}>Boston, MA</p>
+          </div>
         </div>
-      </main>
+        <p className="fade-in fade-in-delay-2" style={{ fontSize: '18px', color: '#4A4540', maxWidth: '520px', lineHeight: 1.7, marginBottom: '28px' }}>Sales and account management leader with 10 years driving growth in blockchain and enterprise software. I scale relationships, close complex deals, and exceed revenue targets.</p>
+        <div className="fade-in fade-in-delay-2 button-group" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <a href="#contact" className="button">Get in touch</a>
+          <a href="#projects" className="button button-outline">View projects</a>
+        </div>
+      </section>
+
+      <section id="about" className="section" style={{ paddingTop: '40px' }}>
+        <p className="section-label">About</p>
+        <p style={{ lineHeight: 1.8, fontSize: '16px', color: '#3D3935', marginBottom: '16px' }}>I'm a builder—scaling CS functions from zero, launching community programs, or shipping side projects that solve real problems. Track record of scaling high-value customer relationships in both startup and enterprise settings.</p>
+        <div style={{ padding: '20px 24px', backgroundColor: '#EFECE7', borderRadius: '4px', borderLeft: '3px solid #2B4A3F' }}>
+          <ul style={{ listStyle: 'none', fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: '#4A4540', lineHeight: 2, padding: 0, margin: 0 }}>
+            <li>BS Marketing Communications, Emerson College 2015</li>
+            <li>NCAA Division III Basketball</li>
+            <li>Boston DAO member</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="experience" className="section" style={{ paddingTop: '40px' }}>
+        <p className="section-label">Experience</p>
+        <div>
+          {experiences.map((exp, index) => (
+            <div key={index} className="experience-item">
+              <div className="exp-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px', gap: '16px' }}>
+                <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a' }}>{exp.role}</h3>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#8B857E', whiteSpace: 'nowrap' }}>{exp.period}</span>
+              </div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: '#2B4A3F', marginBottom: '4px', fontWeight: 500 }}>{exp.company}</p>
+              <p style={{ fontSize: '14px', color: '#5C564F', lineHeight: 1.5 }}>{exp.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="section" style={{ paddingTop: '40px' }}>
+        <p className="section-label">Projects</p>
+        <div>
+          {projects.map((project, index) => (
+            <div key={index} className="project-item">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a' }}>{project.name}</h3>
+                {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="link" style={{ fontSize: '13px' }}>{project.name === "Community Hoops" ? "Watch ↗" : "Visit ↗"}</a>}
+              </div>
+              <p style={{ fontSize: '14px', color: '#5C564F', lineHeight: 1.5 }}>{project.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="section" style={{ paddingTop: '40px', paddingBottom: '60px' }}>
+        <p className="section-label">Contact</p>
+        <p style={{ fontSize: '16px', color: '#4A4540', marginBottom: '24px', lineHeight: 1.7 }}>Exploring opportunities in customer success, account management, and sales across tech. Let's connect.</p>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <a href="mailto:nickwelch22@gmail.com" className="button">Email me</a>
+          <a href="https://www.linkedin.com/in/ntwelch/" target="_blank" rel="noopener noreferrer" className="button button-outline">LinkedIn</a>
+        </div>
+      </section>
+
+      <footer style={{ borderTop: '1px solid #E8E4DF', padding: '24px', backgroundColor: '#EFECE7' }}>
+        <div className="footer-inner" style={{ maxWidth: '720px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#8B857E' }}>© 2025 Nick Welch</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#8B857E' }}>ntwelch.com</p>
+        </div>
+      </footer>
     </div>
   );
 }
