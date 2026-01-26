@@ -18,9 +18,9 @@ export default function Home() {
   ];
 
   const projects = [
-    { name: "DoIGrade.com", description: "Sports card tools—grade calculators, trade evaluators, and ELO-based rankings.", link: "https://doigrade.com" },
-    { name: "ADU Pulse", description: "Real-time ADU permit tracking dashboard for Massachusetts.", link: "https://adupulse.com" },
-    { name: "Community Hoops", description: "Co-founded free youth basketball mentoring. Partnered with PeacePlayers International.", link: "https://www.youtube.com/watch?v=27QHI6qX2M0" }
+    { name: "DoIGrade.com", description: "Sports card tools—grade calculators, trade evaluators, and ELO-based rankings.", link: "https://doigrade.com", linkText: "Visit ↗" },
+    { name: "ADU Pulse", description: "Real-time ADU permit tracking dashboard for Massachusetts.", link: "https://adupulse.com", linkText: "Visit ↗" },
+    { name: "Community Hoops", description: "Co-founded free youth basketball mentoring. Partnered with PeacePlayers International.", link: "https://www.youtube.com/watch?v=27QHI6qX2M0", linkText: "Watch ↗", link2: "https://www.newburyportnews.com/sports/helping-out-with-hoops/article_ec5d147b-5963-51c7-9203-a126dfe3b2fd.html", link2Text: "Article ↗" }
   ];
 
   return (
@@ -68,6 +68,7 @@ export default function Home() {
             <a href="#about" className="nav-link">About</a>
             <a href="#experience" className="nav-link">Experience</a>
             <a href="#projects" className="nav-link">Projects</a>
+            <a href="/resume.pdf" target="_blank" className="nav-link">Resume</a>
             <a href="#contact" className="nav-link">Contact</a>
           </div>
         </div>
@@ -84,7 +85,7 @@ export default function Home() {
         <p className="fade-in fade-in-delay-2" style={{ fontSize: '18px', color: '#4A4540', maxWidth: '520px', lineHeight: 1.7, marginBottom: '28px' }}>Sales and account management leader with 10 years driving growth in blockchain and enterprise software. I scale relationships, close complex deals, and exceed revenue targets.</p>
         <div className="fade-in fade-in-delay-2 button-group" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <a href="#contact" className="button">Get in touch</a>
-          <a href="#projects" className="button button-outline">View projects</a>
+          <a href="/resume.pdf" target="_blank" className="button button-outline">View resume</a>
         </div>
       </section>
 
@@ -123,7 +124,10 @@ export default function Home() {
             <div key={index} className="project-item">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
                 <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a' }}>{project.name}</h3>
-                {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="link" style={{ fontSize: '13px' }}>{project.name === "Community Hoops" ? "Watch ↗" : "Visit ↗"}</a>}
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="link" style={{ fontSize: '13px' }}>{project.linkText}</a>}
+                  {project.link2 && <a href={project.link2} target="_blank" rel="noopener noreferrer" className="link" style={{ fontSize: '13px' }}>{project.link2Text}</a>}
+                </div>
               </div>
               <p style={{ fontSize: '14px', color: '#5C564F', lineHeight: 1.5 }}>{project.description}</p>
             </div>
