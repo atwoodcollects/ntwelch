@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -50,32 +51,58 @@ export default function Home() {
         .fade-in-delay-1 { animation-delay: 0.1s; }
         .fade-in-delay-2 { animation-delay: 0.2s; }
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .desktop-nav { display: flex; gap: 28px; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-menu { display: none; }
         @media (max-width: 640px) {
           .section { padding: 40px 20px; }
-          .nav-inner { padding: 14px 20px !important; }
-          .nav-links { gap: 16px !important; font-size: 13px; }
           .hero-title { font-size: 36px !important; }
           .button-group { flex-direction: column !important; width: 100%; }
           .exp-header { flex-direction: column !important; gap: 4px !important; }
           .footer-inner { flex-direction: column !important; text-align: center; }
+          .desktop-nav { display: none; }
+          .mobile-menu-btn { display: block; }
+          .mobile-menu { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #F7F5F2; border-bottom: 1px solid #E8E4DF; padding: 16px 20px; gap: 16px; }
+          .hero-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
       `}</style>
 
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backgroundColor: 'rgba(247, 245, 242, 0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #E8E4DF' }}>
-        <div className="nav-inner" style={{ maxWidth: '720px', margin: '0 auto', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ maxWidth: '720px', margin: '0 auto', padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
           <a href="#" style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontWeight: 600, fontSize: '16px', color: '#1a1a1a', textDecoration: 'none' }}>ntwelch.com</a>
-          <div className="nav-links" style={{ display: 'flex', gap: '28px' }}>
+          
+          <div className="desktop-nav">
             <a href="#about" className="nav-link">About</a>
             <a href="#experience" className="nav-link">Experience</a>
             <a href="#projects" className="nav-link">Projects</a>
             <a href="/resume.pdf" target="_blank" className="nav-link">Resume</a>
             <a href="#contact" className="nav-link">Contact</a>
           </div>
+
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
+              {menuOpen ? (
+                <path d="M6 6l12 12M6 18L18 6" />
+              ) : (
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              )}
+            </svg>
+          </button>
+
+          {menuOpen && (
+            <div className="mobile-menu">
+              <a href="#about" className="nav-link" onClick={() => setMenuOpen(false)}>About</a>
+              <a href="#experience" className="nav-link" onClick={() => setMenuOpen(false)}>Experience</a>
+              <a href="#projects" className="nav-link" onClick={() => setMenuOpen(false)}>Projects</a>
+              <a href="/resume.pdf" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>Resume</a>
+              <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>Contact</a>
+            </div>
+          )}
         </div>
       </nav>
 
       <section className="section" style={{ paddingTop: '100px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '24px' }}>
+        <div className="hero-row" style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '24px' }}>
           <img src="/headshot.jpg" alt="Nick Welch" className="fade-in" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '3px solid #E8E4DF' }} />
           <div>
             <h1 className="fade-in fade-in-delay-1 hero-title" style={{ fontSize: '42px', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#1a1a1a' }}>Nick Welch</h1>
