@@ -19,6 +19,7 @@ export default function Home() {
   ];
 
   const projects = [
+    { name: "Customer Successed", description: "AI-powered account health analyzer for revenue teams and CSMs. From customer obsessed to successed.", link: "https://customersuccessed.com", linkText: "Visit ↗" },
     { name: "DoIGrade.com", description: "Sports card tools—grade calculators, trade evaluators, and ELO-based rankings.", link: "https://doigrade.com", linkText: "Visit ↗" },
     { name: "ADU Pulse", description: "Real-time ADU permit tracking dashboard for Massachusetts.", link: "https://adupulse.com", linkText: "Visit ↗" },
     { name: "Community Hoops", description: "Co-founded free youth basketball mentoring. Partnered with PeacePlayers International.", link: "https://www.youtube.com/watch?v=27QHI6qX2M0", linkText: "Watch ↗", link2: "https://www.newburyportnews.com/sports/helping-out-with-hoops/article_ec5d147b-5963-51c7-9203-a126dfe3b2fd.html", link2Text: "Article ↗" }
